@@ -83,7 +83,7 @@ function serchImageByName(searchImage) {
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: true,
-    per_page: 9,
+    per_page: 21,
   });
 
   return fetch(`${BASE_URL}/?${urlParams}`).then(response => {
