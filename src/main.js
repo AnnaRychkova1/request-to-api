@@ -17,6 +17,7 @@ searchForm.addEventListener('submit', handleSearch);
 
 function handleSearch(event) {
   event.preventDefault();
+  resultContainer.innerHTML = "";
   showLoader();
 
   const formQuery = event.currentTarget;
