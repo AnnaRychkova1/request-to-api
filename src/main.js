@@ -14,18 +14,19 @@ const resultContainer = document.querySelector('.gallery');
 const loaderContainer = document.querySelector('.loader-container');
 
 searchForm.addEventListener('submit', handleSearch);
+hideLoader()
 
 function handleSearch(event) {
+  showLoader();
   event.preventDefault();
   resultContainer.innerHTML = "";
-  showLoader();
+  
 
   const formQuery = event.currentTarget;
   const search = formQuery.elements.query.value;
 
-  serchImageByName(search)
+  searchImageByName(search)
     .then(data => {
-      hideLoader();
       if (!data || data.total === 0) {
         iziToast.error({
           title: '🥺 Ooops...',
@@ -53,7 +54,6 @@ function handleSearch(event) {
       lightbox.refresh();
     })
     .catch(error => {
-      hideLoader();
       console.error('Error fetching images:', error);
       iziToast.error({
         title: '🥺 Ooops...',
@@ -76,7 +76,7 @@ function hideLoader() {
   loaderContainer.style.display = 'none';
 }
 
-function serchImageByName(searchImage) {
+function searchImageByName(searchImage) {
   const urlParams = new URLSearchParams({
     key: API_KEY,
     q: searchImage,
